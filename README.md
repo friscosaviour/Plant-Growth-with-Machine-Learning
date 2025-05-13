@@ -1,5 +1,5 @@
 System Architecture Overview
- - Sensors: Soil moisture, Light, Temp, Humidity sensors connected to RPi GPIO/I2C/Analog pins. Camera connected via CSI or USB.
+ - Sensors: Soil moisture, Light, Temp, Humidity sensors connected to RPi GPIO/I2C/Analog pins. Camera connected via CSI.
  - Data Acquisition: A Python script reads sensor values at regular intervals.
  - Data Logging: Sensor readings (excluding images) are appended to a CSV file.
  - CV Module: Periodically captures images, processes them (potentially using the AI accelerator if a neural network is used) to generate a health score.
