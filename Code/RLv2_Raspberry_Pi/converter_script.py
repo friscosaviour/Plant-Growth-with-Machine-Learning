@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 # Load your trained Keras model (the main policy network)
-# Make sure to build the model first if you are just loading weights
+# Make sure to build the model  first if you are just loading weights
 # model = build_dqn_model(STATE_SIZE, ACTION_SIZE, LEARNING_RATE) # Use same parameters
 # model.load_weights('dqn_plant_model_final.h5') # Load your best weights
 
