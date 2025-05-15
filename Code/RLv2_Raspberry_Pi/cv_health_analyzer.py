@@ -5,7 +5,7 @@ import time
 # Optional: Use picamera library if using the official Pi Camera module
 # from picamera import PiCamera
 # from picamera.array import PiRGBArray
-
+# hi
 # --- Configuration ---
 # Define the lower and upper bounds for GREEN in HSV color space
 # These values might need significant tuning based on your camera and lighting!
