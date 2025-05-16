@@ -6,7 +6,7 @@ System Architecture Overview
  - RL Agent:
    - Reads the latest sensor data from the CSV or directly.
    - Optionally incorporates the CV health score into its state or reward calculation.
-   - Uses a trained policy (running inference on the AI accelerator via TFLite) to decide on an action.
+   - Uses a trained policy (running inference on the AI accelerator via TFLite ) to decide on an action.
    - Actuators: The RL agent's chosen action triggers the corresponding actuator (e.g., turns the water pump on/off via RPi GPIO).
    - Feedback Loop: The environment changes (plant grows, soil dries), sensors detect this, feeding new data back into the system.
 
