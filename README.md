@@ -18,6 +18,7 @@ System Architecture Overview
 - [ ] Temperature sensor
 - [ ] light intensity sensor
 - [ ] UV light strip
+- [ ] Oled screen
 
 - [ ] 
 
