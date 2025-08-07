@@ -1,0 +1,63 @@
+/*
+ * Arduino sketch to test a DHT11 temperature and humidity sensor.
+ *
+ * This program requires the Adafruit DHT sensor library.
+ * To install: Go to Tools -> Manage Libraries..., search for "DHT sensor library",
+ * and install the one by Adafruit.
+ *
+ * Connections:
+ * - DHT11 VCC pin to Arduino 5V
+ * - DHT11 GND pin to Arduino GND
+ * - DHT11 DATA pin to Arduino Digital Pin 2
+ *
+ * The code will read the temperature and humidity and print the values
+ * to the Serial Monitor. If the sensor is not working, it will print
+ * a "Failed to read from DHT sensor!" message.
+ */
+
+#include <DHT.h>
+
+// Define the digital pin connected to the DHT sensor's data pin
+#define DHTPIN 2
+// Define the sensor type
+#define DHTTYPE DHT11
+
+// Initialize the DHT sensor.
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  // Start serial communication
+  Serial.begin(9600);
+  Serial.println("DHT11 Sensor Test");
+  Serial.println("-------------------");
+
+  // Start the DHT sensor
+  dht.begin();
+}
+
+void loop() {
+  // Wait a few seconds between measurements.
+  // The DHT11 is slow, so a delay of at least 1 second is recommended.
+  delay(2000);
+
+  // Reading temperature or humidity takes about 250 milliseconds.
+  // Sensor readings may also be up to 2 seconds 'old' (it's a very slow sensor).
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+
+  // Check if any reads failed and exit early (to try again).
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+
+  // Print the results to the Serial Monitor
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.print(" %");
+  Serial.print(" | ");
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" C");
+  Serial.println("-------------------");
+}
