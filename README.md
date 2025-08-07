@@ -4,8 +4,6 @@
 
 This repository showcases an innovative project focused on optimizing plant growth using a combination of Reinforcement Learning (RL), Computer Vision (CV), and Internet of Things (IoT) hardware. The aim is to create an autonomous system that monitors plant health, makes intelligent decisions regarding environmental parameters, and facilitates optimal growth conditions.
 
-This project demonstrates a strong understanding of full-stack development in the context of intelligent systems, encompassing hardware design, embedded programming, machine learning model development, and data management.
-
 ## Features
 
 *   **Reinforcement Learning Agent:** Developed and trained an RL agent to learn optimal watering, lighting, and nutrient delivery strategies based on sensor data and plant health feedback.
