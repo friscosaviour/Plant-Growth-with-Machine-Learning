@@ -1,65 +1,70 @@
 /*
-  Arduino code for reading two SD12D UV intensity sensors.
+  Improved Arduino code for reading two SD12D UV intensity sensors.
 
-  Connections:
-  - Sensor 1 SIG pin to Arduino Analog Pin A0
-  - Sensor 2 SIG pin to Arduino Analog Pin A1
-  - Both sensors' GND pins to Arduino GND
-  - Both sensors' VCC pins to Arduino 5V
+  Connections:
+  - Sensor 1 SIG pin to Arduino Analog Pin A0
+  - Sensor 2 SIG pin to Arduino Analog Pin A1
+  - Both sensors' GND pins to Arduino GND
+  - Both sensors' VCC pins to Arduino 5V
 
-  The code reads the analog voltage from the SIG pin of each sensor,
-  converts it to a UV index, and prints the values to the Serial Monitor.
+  The code reads the analog voltage from the SIG pin of each sensor,
+  converts it to a UV index, and prints the values to the Serial Monitor.
+  This version is more modular and easier to read.
 */
 
 // Define the analog pins connected to the SIG pins of the UV sensors
-const int uvSensorPin1 = A0;
-const int uvSensorPin2 = A1;
+const int UV_SENSOR_PIN_1 = A0;
+const int UV_SENSOR_PIN_2 = A1;
+
+// Define constants for the conversion calculations.
+// These are calculated once and stored in memory.
+const float ADC_VOLTAGE_FACTOR = 5.0 / 1023.0;
+const float UV_INDEX_CONVERSION_FACTOR = 0.1; // 1 UV Index unit per 0.1V
 
 void setup() {
-  // Initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
-  Serial.println("UV Sensor Test");
-  Serial.println("--------------");
+  // Initialize serial communication at 9600 bits per second
+  Serial.begin(9600);
+  Serial.println("Arduino Dual UV Sensor Reader");
+  Serial.println("------------------------------");
 }
 
 void loop() {
-  // Read the raw analog value from sensor 1
-  int sensorValue1 = analogRead(uvSensorPin1);
-  // Read the raw analog value from sensor 2
-  int sensorValue2 = analogRead(uvSensorPin2);
+  // Read and print data for the first UV sensor
+  readAndPrintSensorData(UV_SENSOR_PIN_1, "Sensor 1");
 
-  // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V)
-  // The Arduino's ADC has a 10-bit resolution (2^10 = 1024)
-  // We divide by 1024.0 to get a floating point result.
-  float voltage1 = sensorValue1 * (5.0 / 1023.0);
-  float voltage2 = sensorValue2 * (5.0 / 1023.0);
+  // Read and print data for the second UV sensor
+  readAndPrintSensorData(UV_SENSOR_PIN_2, "Sensor 2");
+ 
+  Serial.println("------------------------------");
 
-  // The output voltage from the SD12D sensor is typically proportional to the UV index.
-  // A common conversion factor is 1 UV Index unit per 0.1V.
-  // This may need calibration based on the specific sensor datasheet or experimental data.
-  // UV Index = Voltage / 0.1
-  float uvIndex1 = voltage1 / 0.1;
-  float uvIndex2 = voltage2 / 0.1;
+  // Wait for a second before the next reading
+  delay(1000);
+}
 
-  // Print the results to the Serial Monitor
-  Serial.print("Sensor 1: ");
-  Serial.print("Raw Value = ");
-  Serial.print(sensorValue1);
-  Serial.print(", Voltage = ");
-  Serial.print(voltage1, 2); // Print voltage with 2 decimal places
-  Serial.print(" V, UV Index = ");
-  Serial.println(uvIndex1, 2); // Print UV index with 2 decimal places
+/**
+ * @brief Reads the analog value from a specified pin, converts it to voltage and UV index,
+ *        and prints the results to the Serial Monitor.
+ *
+ * @param sensorPin The analog pin connected to the UV sensor's signal pin.
+ * @param sensorName A string to identify the sensor in the output (e.g., "Sensor 1").
+ */
+void readAndPrintSensorData(int sensorPin, const char* sensorName) {
+  // Read the raw analog value from the sensor
+  int rawValue = analogRead(sensorPin);
 
-  Serial.print("Sensor 2: ");
-  Serial.print("Raw Value = ");
-  Serial.print(sensorValue2);
-  Serial.print(", Voltage = ");
-  Serial.print(voltage2, 2);
-  Serial.print(" V, UV Index = ");
-  Serial.println(uvIndex2, 2);
+  // Convert the analog reading (0-1023) to a voltage (0-5V)
+  float voltage = rawValue * ADC_VOLTAGE_FACTOR;
 
-  Serial.println("--------------");
+  // Convert the voltage to a UV Index
+  // UV Index = Voltage / 0.1 (based on typical sensor datasheet)
+  float uvIndex = voltage / UV_INDEX_CONVERSION_FACTOR;
 
-  // Wait for a second before the next reading
-  delay(1000);
+  // Print the results in a single, formatted line
+  Serial.print(sensorName);
+  Serial.print(": Raw Value = ");
+  Serial.print(rawValue);
+  Serial.print(", Voltage = ");
+  Serial.print(voltage, 2); // Print voltage with 2 decimal places
+  Serial.print(" V, UV Index = ");
+  Serial.println(uvIndex, 2); // Print UV index with 2 decimal places
 }
