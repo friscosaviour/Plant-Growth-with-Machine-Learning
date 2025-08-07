@@ -52,7 +52,7 @@ Plant-Growth-with-Machine-Learning/
 
 ## Future Enhancements
 
-*   Integration with cloud platforms for remote monitoring and data visualization.
+*   Integration with cloud platforms for remote monitoring and data visualization. 
 *   Implementation of more advanced RL algorithms and neural network architectures.
 *   Development of a user-friendly interface for system control and data analysis.
 *   Expansion to support multiple plant types and environmental conditions.
