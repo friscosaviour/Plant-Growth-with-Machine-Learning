@@ -7,7 +7,7 @@ This repository showcases an innovative project focused on optimizing plant grow
 ## Features
 
 *   **Reinforcement Learning Agent:** Developed and trained an RL agent to learn optimal watering, lighting, and nutrient delivery strategies based on sensor data and plant health feedback.
-*   **Computer Vision Health Analysis:** Implemented a CV module to analyze plant images, detect signs of stress or disease, and provide real-time health assessments.
+*   **Computer Vision Health Analysis:** Implemented a CV module to analyze plant images, detect signs of stress or disease, and provide real-time health assessments. 
 *   **Raspberry Pi Integration:** Deployed the RL and CV models on a Raspberry Pi for edge computing, enabling autonomous control of plant environment parameters.
 *   **Data Logging & Monitoring:** Established a robust data logging system to collect sensor data (moisture, light, temperature, humidity) and plant health metrics over time, crucial for training and evaluating the RL agent.
 *   **3D Printable Hardware:** Designed and developed custom 3D models (using SolidWorks) for essential hardware components, such as moisture sensor holders and structural elements, ensuring seamless integration with the system.
