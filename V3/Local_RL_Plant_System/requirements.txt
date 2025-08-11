@@ -1,0 +1,9 @@
+tensorflow
+gymnasium
+rich
+opencv-python-headless
+RPi.GPIO
+adafruit-circuitpython-dht
+spidev
+PyYAML
+numpy

@@ -1,0 +1,35 @@
+# Configuration for the Autonomous Plant Care System
+
+# Hardware Pins (BCM numbering)
+hardware:
+  pump_pin: 17
+  light_pin: 27
+  soil_moisture_channel: 0 # ADC channel for soil moisture sensor
+  dht_pin: 22             # Pin for DHT22 sensor
+
+# Control Loop
+controller:
+  loop_interval_seconds: 3600 # 1 hour
+  tui_refresh_rate_seconds: 5
+
+# Model and Database
+files:
+  model_path: "model/plant_model.tflite"
+  database_path: "data/plant_care.db"
+  log_file_path: "logs/system.log"
+
+# RL Environment Parameters
+environment:
+  ideal_soil_moisture: 500
+  ideal_temperature: 22.0 # Celsius
+  ideal_humidity: 60.0 # Percent
+  ideal_light_hours: 16.0
+
+# CV Health Analyzer
+cv_analyzer:
+  image_capture:
+    width: 1280
+    height: 720
+  health_metric:
+    lower_green_hsv: [35, 100, 100]
+    upper_green_hsv: [85, 255, 255]
