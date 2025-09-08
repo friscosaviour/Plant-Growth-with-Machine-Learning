@@ -11,7 +11,7 @@ The system will operate in a continuous loop:
 2.  Capture an image of the plant and calculate a "health score" using computer vision.
 3.  Feed the sensor data and health score into a pre-trained local RL model (`.tflite` format).
 4.  The RL model will decide on an action (e.g., do nothing, water, turn on light, water and light).
-5.  Execute the chosen action using actuators (water pump, LED light strip).
+5.  Execute the chosen action using  actuators (water pump, LED light strip).
 6.  Log all data and actions to a  local database.
 7.  Display the system status on a clean terminal-based user interface.
 
